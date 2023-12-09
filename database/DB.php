@@ -1,13 +1,13 @@
 <?php
 
 $server='localhost';
-$user='postgres';
-$password='passer';
+$user='root';
+$password='';
 $dbname='gestion_iage_3';
 
 try{
 
-    $connexion= new PDO("pgsql:host=$server;dbname=$dbname",$user,$password);
+    $connexion= new PDO("mysql:host=$server;dbname=$dbname",$user,$password);
 
 }catch (Exception $e)
 {
