@@ -3,6 +3,7 @@
 
 
       <?php
+          session_start();
           ob_start();
           require_once("./pages/template/header.php");
           require_once("./pages/template/sidebar.php");
@@ -10,12 +11,15 @@
           require_once('./database/profilModel.php');
           require_once('./database/userModel.php');
 
-          $profils= ($_GET['page']=='profil' || $_GET['page']=='user') ? getProfils() : [];
-          $users =  ($_GET['page']=='user') ? getUsers() : [];
+     
 
           //router
           //require_once("./pages/user/user.php");
+   
           if(isset($_GET['page'])){
+            $profils= ($_GET['page']=='profil' || $_GET['page']=='user') ? getProfils() : [];
+            $users =  ($_GET['page']=='user') ? getUsers() : [];
+
             if($_GET['page']== 'user'){
                 require_once("./pages/user/user.php");
             }
@@ -27,9 +31,29 @@
                 deleteProfil($id);
                 header('location:http://localhost/gestion_iage_3/?page=profil');
             }
+            if($_GET["page"] == "deconnexion"){
+              session_destroy();
+              header('location:http://localhost/gestion_iage_3');
+            }
           }else{
-            require_once("./pages/profil/profil.php");
+            require_once("./pages/connexion.php");
           }
+
+          if(isset($_POST["login"])){
+            extract($_POST);
+            $res =  verifUser($username,$password);
+            if($res){
+
+              $_SESSION["nom"] = $res["nom"];
+              $_SESSION["prenom"] = $res["prenom"];
+              $_SESSION["profil"] = $res["type"];
+              header('location:http://localhost/gestion_iage_3/?page=profil');
+            }else{
+              $error= "Login ou mot de passe Incorrect";
+            }
+
+          }
+          
 
           if(isset($_POST["ajoutUser"])){
                // $libelle = $_POST["libelle"];

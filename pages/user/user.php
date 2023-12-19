@@ -68,7 +68,7 @@
                         <td> <?= $p[1]; ?> </td>
                         <td> <?= $p[2]; ?> </td>
                         <td> <?= $p[3]; ?> </td>
-                        <td> <?= $p[5]; ?> </td>
+                        <td> <?= $p[4]; ?> </td>
                         <td>
                             <button class="btn btn-outline-primary">Modifier</button>
                             <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Supprimer</a>
