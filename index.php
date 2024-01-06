@@ -10,6 +10,9 @@
 
           require_once('./database/profilModel.php');
           require_once('./database/userModel.php');
+          require_once('./database/offreModel.php');
+
+          require_once('./model/Offre.php');
 
      
 
@@ -26,6 +29,9 @@
             if($_GET['page']== 'profil'){
                 require_once("./pages/profil/profil.php");
             }
+            if($_GET['page']== 'demande'){
+              require_once("./pages/demande/demande.php");
+          }
             if($_GET['page']== 'deleteProfil'){
                 $id = $_GET['id'];
                 deleteProfil($id);
@@ -47,6 +53,7 @@
               $_SESSION["nom"] = $res["nom"];
               $_SESSION["prenom"] = $res["prenom"];
               $_SESSION["profil"] = $res["type"];
+              $_SESSION["id"] = $res["id"];
               header('location:http://localhost/gestion_iage_3/?page=profil');
             }else{
               $error= "Login ou mot de passe Incorrect";
@@ -56,11 +63,31 @@
           
 
           if(isset($_POST["ajoutUser"])){
-               // $libelle = $_POST["libelle"];
+                
                extract($_POST);
-               addUser($nom,$prenom,$login,$password,$type);
-               header('location:http://localhost/gestion_iage_3/?page=user');
+               addUser($nom,$prenom,$login,$password,$type ? $type : getProfilClient()['id']);
+               if(isset($type)){
+                header('location:http://localhost/gestion_iage_3/?page=user');
+               }else{
+                header('location:http://localhost/gestion_iage_3/index.php');
+               }
+               
           }
+
+          if(isset($_POST["ajoutOffre"])){
+            extract($_POST);
+            $offre = new Offre();
+            $offre->setLibelle($libelle);
+            $offre->setImage($image);
+            $offre->setDescription($description);
+            $offre->setSalaire($salaire);
+            $offre->setIdg($_SESSION['id']);
+            addOffre($offre);
+            header('location:http://localhost/gestion_iage_3/?page=demande');
+
+          }
+
+          
 
           
        

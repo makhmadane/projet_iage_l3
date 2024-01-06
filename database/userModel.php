@@ -23,7 +23,7 @@ function  addUser($nom,$prenom,$login,$password,$type){
 
 function verifUser($login,$password){
     global  $connexion;
-    $sql="SELECT u.nom,u.prenom,p.libelle as type FROM user u , profil p where u.login ='$login' and u.password = '$password' and u.type=p.id  ";
+    $sql="SELECT u.nom,u.prenom,p.libelle as type,u.id FROM user u , profil p where u.login ='$login' and u.password = '$password' and u.type=p.id  ";
     return $connexion->query($sql)->fetch();
 }
 

@@ -27,5 +27,11 @@ function deleteProfil($id){
     return $state->execute();
 }
 
+function getProfilClient(){
+    global  $connexion;
+    $sql="SELECT id FROM profil where libelle = 'client'";
+    return $connexion->query($sql)->fetch();
+}
+
 
 ?>

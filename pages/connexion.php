@@ -1,3 +1,43 @@
+
+<div class="modal fade" id="ajoutProfil" tabindex="-1">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">S'INSCRIRE SUR LA PLATEFORME</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" >
+                            <label for="">Nom</label>
+                            <input type="text" name="nom" class="form-control">
+
+                            <label for="">Prenom</label>
+                            <input type="text" name="prenom" class="form-control">
+
+                            <label for="">Login</label>
+                            <input type="text" name="login" class="form-control">
+                            
+                            
+                            <label for="">Password</label>
+                            <input type="password" name="password" class="form-control">
+
+                            
+
+                            <div class="modal-footer">
+                                
+                                <button type="submit" name="ajoutUser" class="btn btn-primary">Se connecter </button>
+                            </div>
+                        </form>
+                    </div>
+                
+                  </div>
+                </div>
+              </div><!-- End Basic Modal-->
+
+</div>
+
+
+
 <div class="container">
 
 <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -49,7 +89,7 @@
                 <button class="btn btn-primary w-100" type="submit" name="login">Login</button>
               </div>
               <div class="col-12">
-                <p class="small mb-0">Don't have account? <a href="pages-register.html">Create an account</a></p>
+                <p class="small mb-0"> <a href="#" data-bs-toggle="modal" data-bs-target="#ajoutProfil">S'inscrire sur la plateforme</a></p>
               </div>
             </form>
 
