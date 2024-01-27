@@ -22,7 +22,11 @@
           if(isset($_GET['page'])){
             $profils= ($_GET['page']=='profil' || $_GET['page']=='user') ? getProfils() : [];
             $users =  ($_GET['page']=='user') ? getUsers() : [];
-
+            $offres =  ($_GET['page']=='demande') ? getDemandes($_SESSION['id']) : [];
+            $offresAct =  ($_GET['page']=='publication') ?getDemandesAct($_SESSION['id']) : [];
+            if($_GET['page']== 'publication'){
+              require_once("./pages/publication/publication.php");
+            }
             if($_GET['page']== 'user'){
                 require_once("./pages/user/user.php");
             }
@@ -36,6 +40,13 @@
                 $id = $_GET['id'];
                 deleteProfil($id);
                 header('location:http://localhost/gestion_iage_3/?page=profil');
+            }
+            if($_GET['page']== 'updateEtat'){
+              $id = $_GET['id'];
+              $etat = $_GET['etat'];
+              updateEtat($id,$etat);
+              header('location:http://localhost/gestion_iage_3/?page=demande');
+
             }
             if($_GET["page"] == "deconnexion"){
               session_destroy();
@@ -54,7 +65,13 @@
               $_SESSION["prenom"] = $res["prenom"];
               $_SESSION["profil"] = $res["type"];
               $_SESSION["id"] = $res["id"];
-              header('location:http://localhost/gestion_iage_3/?page=profil');
+
+              if( $_SESSION["profil"] == 'client'){
+                header('location:http://localhost/gestion_iage_3/?page=publication');
+              }else{
+                header('location:http://localhost/gestion_iage_3/?page=profil');
+              }
+             
             }else{
               $error= "Login ou mot de passe Incorrect";
             }

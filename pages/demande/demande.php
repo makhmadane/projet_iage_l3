@@ -56,13 +56,19 @@
                 </thead>
                 <tbody>
 
-                <?php foreach ($profils as  $p) { ?>
+                <?php foreach ($offres  as  $p) { ?>
                    <tr>
-                        <td> <?= $p[0]; ?> </td>
+                       <td> <?= $p[4]; ?> </td>
                         <td> <?= $p[1]; ?> </td>
+                        <td> <?= $p[2]; ?> </td>
+                        <td> <?= $p[3]; ?> </td>
                         <td>
-                            <button class="btn btn-outline-primary">Modifier</button>
-                            <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Supprimer</a>
+                        <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Détail</a>
+                        <button class="btn btn-outline-primary">Modifier</button>
+                        <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Supprimer</a>
+                        <a class="<?php echo $p[5] == 1 ? 'btn btn-outline-success' : 'btn btn-outline-warning' ?>" href="?page=updateEtat&&id=<?= $p[0]; ?>&&etat=<?= $p[5]; ?>" >
+                             <?php echo $p[5] == 1 ? 'Descativer' : 'Activer' ?>
+                       </a>
                         </td>
                    </tr>
                 <?php } ?>

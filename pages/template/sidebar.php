@@ -12,7 +12,7 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item" <?php echo  $_SESSION["profil"] == "admin"  ? 'hidden' : ''  ?>>
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="?page=publication">
           <i class="bi bi-grid"></i>
           <span>Publication</span>
         </a>
