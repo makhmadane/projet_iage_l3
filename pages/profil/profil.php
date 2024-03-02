@@ -47,7 +47,7 @@
                         <td> <?= $p[0]; ?> </td>
                         <td> <?= $p[1]; ?> </td>
                         <td>
-                            <button class="btn btn-outline-primary">Modifier</button>
+                            <a class="btn btn-outline-primary" href="?page=modifprofil&&id=<?= $p[0]; ?>">Modifier</a>
                             <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Supprimer</a>
                         </td>
                    </tr>

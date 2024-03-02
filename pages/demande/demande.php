@@ -58,17 +58,30 @@
 
                 <?php foreach ($offres  as  $p) { ?>
                    <tr>
-                       <td> <?= $p[4]; ?> </td>
+                       <td> <img height=50px width=50px src="./assets/img/profile-img.jpg" alt="photo"> </td>
                         <td> <?= $p[1]; ?> </td>
                         <td> <?= $p[2]; ?> </td>
                         <td> <?= $p[3]; ?> </td>
                         <td>
-                        <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Détail</a>
-                        <button class="btn btn-outline-primary">Modifier</button>
-                        <a class="btn btn-outline-danger"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Supprimer</a>
-                        <a class="<?php echo $p[5] == 1 ? 'btn btn-outline-success' : 'btn btn-outline-warning' ?>" href="?page=updateEtat&&id=<?= $p[0]; ?>&&etat=<?= $p[5]; ?>" >
+                        <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                          Options
+                        </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Détail</a></li>
+    <li><a class="dropdown-item">Modifier</a></li>
+    <li><a class="dropdown-item"  href="?page=deleteProfil&&id=<?= $p[0]; ?> ">Supprimer</a></li>
+    <li>
+       <a class="dropdown-item" href="?page=updateEtat&&id=<?= $p[0]; ?>&&etat=<?= $p[5]; ?>" >
                              <?php echo $p[5] == 1 ? 'Descativer' : 'Activer' ?>
                        </a>
+    </li>        
+  </ul>
+</div>
+                       
+                       
+                       
                         </td>
                    </tr>
                 <?php } ?>

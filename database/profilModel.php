@@ -18,6 +18,12 @@ function getProfils(){
     return $connexion->query($sql)->fetchAll();
 }
 
+function getProfilById($id){
+    global  $connexion;
+    $sql="SELECT * FROM profil where id= $id";
+    return $connexion->query($sql)->fetch();
+}
+
 function deleteProfil($id){
     global  $connexion;
     $sql= "DELETE FROM profil where id = :id";
@@ -27,6 +33,15 @@ function deleteProfil($id){
     return $state->execute();
 }
 
+function updateProfil($id,$libelle){
+    global  $connexion;
+    $sql= "UPDATE profil set libelle = :libelle where id = :id";
+    $state=$connexion->prepare($sql);
+    $state->bindValue("id",$id,PDO::PARAM_INT);
+    $state->bindValue("libelle",$libelle,PDO::PARAM_STR);
+
+    return $state->execute();
+}
 function getProfilClient(){
     global  $connexion;
     $sql="SELECT id FROM profil where libelle = 'client'";

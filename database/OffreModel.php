@@ -42,9 +42,14 @@ function updateEtat($id,$etat){
     return $connexion->exec($sql);
 }
 
-function getDemandesAct(){
+function getDemandesAct($id,$profil){
     global  $connexion;
-    $sql="SELECT u.id,u.libelle,u.description,u.salaire,u.image,u.etat FROM offre u  where u.etat = 1 order by id desc ";
+    if($profil == "gestionnaire"){
+        $sql="SELECT u.id,u.libelle,u.description,u.salaire,u.image,u.etat FROM offre u  where u.etat = 1 and u.idg=$id order by id desc ";
+    }else{
+        $sql="SELECT u.id,u.libelle,u.description,u.salaire,u.image,u.etat FROM offre u  where u.etat = 1  order by id desc ";
+    }
+   
     return $connexion->query($sql)->fetchAll();
 }
 

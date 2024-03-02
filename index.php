@@ -23,7 +23,7 @@
             $profils= ($_GET['page']=='profil' || $_GET['page']=='user') ? getProfils() : [];
             $users =  ($_GET['page']=='user') ? getUsers() : [];
             $offres =  ($_GET['page']=='demande') ? getDemandes($_SESSION['id']) : [];
-            $offresAct =  ($_GET['page']=='publication') ?getDemandesAct($_SESSION['id']) : [];
+            $offresAct =  ($_GET['page']=='publication') ?getDemandesAct($_SESSION['id'],$_SESSION['profil']) : [];
             if($_GET['page']== 'publication'){
               require_once("./pages/publication/publication.php");
             }
@@ -36,10 +36,20 @@
             if($_GET['page']== 'demande'){
               require_once("./pages/demande/demande.php");
           }
+          if($_GET['page']== 'detailDemande'){
+            $id = $_GET['id'];
+            require_once('./pages/demande/detailDemande.php');
+          } 
             if($_GET['page']== 'deleteProfil'){
                 $id = $_GET['id'];
                 deleteProfil($id);
                 header('location:http://localhost/gestion_iage_3/?page=profil');
+            }
+            if($_GET['page']== 'modifprofil'){
+              $id = $_GET['id'];
+              $profil =  getProfilById($id);
+              //updateProfil($id);
+              header('location:http://localhost/gestion_iage_3/?page=profil');
             }
             if($_GET['page']== 'updateEtat'){
               $id = $_GET['id'];
